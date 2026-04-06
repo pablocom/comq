@@ -1,0 +1,102 @@
+.communicatorView {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-bg);
+}
+
+.displayArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border-top: 2px solid var(--color-border);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-size: var(--font-size-display);
+  color: var(--color-muted);
+}
+
+.emptyBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.emptyText {
+  font-size: var(--font-size-display);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.emptySubtext {
+  font-size: var(--font-size-body);
+  color: var(--color-muted);
+}
+
+.configureButton {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-scan);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.utteranceOverlay {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.utteranceContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--color-select);
+}
+
+.utteranceLabel {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+@media (min-height: 600px) {
+  .buttonRow {
+    min-height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonRow {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "WebSearch",
+      "WebFetch(domain:aac.unl.edu)",
+      "WebFetch(domain:nwacs.info)",
+      "WebFetch(domain:www.assistiveware.com)",
+      "WebFetch(domain:www.asha.org)",
+      "Bash(nvm list:*)",
+      "Bash(nvm ls:*)",
+      "Bash(npm create:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)",
+      "Bash(git init:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npx playwright:*)",
+      "Bash(curl -s http://localhost:4173)"
+    ]
+  }
+}

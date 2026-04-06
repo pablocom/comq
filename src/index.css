@@ -1,0 +1,69 @@
+:root {
+  --color-bg: #fafafa;
+  --color-text: #1a1a1a;
+  --color-scan: #2563eb;
+  --color-scan-hover: #1d4ed8;
+  --color-select: #16a34a;
+  --color-select-hover: #15803d;
+  --color-back: #dc2626;
+  --color-back-hover: #b91c1c;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-muted: #6b7280;
+
+  --font-size-body: 1.5rem;
+  --font-size-display: 2.5rem;
+  --font-size-button: 1.5rem;
+
+  --radius: 12px;
+  --button-min-size: 80px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 4px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1a1a2e;
+    --color-text: #f0f0f0;
+    --color-surface: #16213e;
+    --color-border: #374151;
+    --color-muted: #9ca3af;
+  }
+}

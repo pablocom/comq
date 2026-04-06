@@ -1,0 +1,215 @@
+.sharing {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.headerActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.navButton:hover {
+  background-color: var(--color-border);
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionHeading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.description {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.actionRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.primaryButton {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-scan);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondaryButton {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  background-color: var(--color-border);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.jsonPreview {
+  margin-top: 1rem;
+}
+
+.jsonActions {
+  margin-bottom: 0.5rem;
+}
+
+.jsonCode {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.importTextarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: monospace;
+  resize: vertical;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.importTextarea:focus {
+  outline: none;
+  border-color: var(--color-scan);
+}
+
+.errorBox {
+  padding: 1rem;
+  border: 2px solid var(--color-back);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--color-back) 10%, var(--color-surface));
+  margin-top: 1rem;
+}
+
+.errorTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-back);
+  margin-bottom: 0.5rem;
+}
+
+.errorList {
+  list-style: disc;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.previewBox {
+  padding: 1rem;
+  border: 2px solid var(--color-select);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--color-select) 5%, var(--color-surface));
+  margin-top: 1rem;
+}
+
+.previewTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-select);
+  margin-bottom: 0.5rem;
+}
+
+.previewList {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.importButton {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--color-select);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.successBox {
+  padding: 1rem;
+  border: 2px solid var(--color-select);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--color-select) 10%, var(--color-surface));
+  color: var(--color-select);
+  font-weight: 600;
+  margin-top: 1rem;
+}

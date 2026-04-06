@@ -1,0 +1,18 @@
+.scanPath {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.segment {
+  white-space: nowrap;
+}
+
+.separator {
+  color: var(--color-muted);
+  opacity: 0.6;
+}

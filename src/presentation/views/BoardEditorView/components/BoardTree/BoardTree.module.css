@@ -1,0 +1,171 @@
+.tree {
+  list-style: none;
+  margin: 0;
+}
+
+.node {
+  position: relative;
+}
+
+/* Drop zone: fixed-height invisible target, no layout shift */
+.dropZone {
+  position: relative;
+  height: 6px;
+}
+
+/* The visible line — absolutely positioned, zero layout impact */
+.dropIndicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 2px;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color 0.1s;
+}
+
+.dropIndicatorActive {
+  background-color: var(--color-scan);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-scan) 30%, transparent);
+}
+
+/* When dragging left: indicator extends to the parent level */
+.dropIndicatorPromoted {
+  background-color: var(--color-scan);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-scan) 30%, transparent);
+  left: -1.5rem;
+}
+
+/* Node row */
+.nodeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-surface);
+  transition: opacity 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.nodeRow:hover {
+  background-color: color-mix(in srgb, var(--color-scan) 5%, var(--color-surface));
+}
+
+.dragging {
+  opacity: 0.35;
+}
+
+.dropTargetCategory {
+  border-color: var(--color-scan);
+  background-color: color-mix(in srgb, var(--color-scan) 10%, var(--color-surface));
+  box-shadow: inset 0 0 0 2px var(--color-scan);
+}
+
+/* Drag handle */
+.dragHandle {
+  flex-shrink: 0;
+  font-size: 1rem;
+  color: var(--color-muted);
+  cursor: grab;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.nodeRow:hover .dragHandle {
+  opacity: 0.8;
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+  opacity: 1;
+}
+
+.nodeIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.nodeLabel {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  word-break: break-word;
+  cursor: text;
+}
+
+.editInput {
+  flex: 1;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--color-scan);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.editInput:focus {
+  outline: none;
+}
+
+.nodeActions {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.iconButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: transparent;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background-color: var(--color-border);
+}
+
+.deleteNodeButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-back);
+  border-radius: 6px;
+  background-color: transparent;
+  color: var(--color-back);
+  font-size: 0.85rem;
+  padding: 0;
+}
+
+.deleteNodeButton > span:first-child {
+  background-color: var(--color-back);
+}
+
+.deleteNodeButton > span:last-child {
+  mix-blend-mode: difference;
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropIndicator,
+  .nodeRow,
+  .dragHandle {
+    transition: none;
+  }
+}

@@ -1,0 +1,33 @@
+.holdButton {
+  position: relative;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0ms linear;
+}
+
+.fill.filling {
+  transform: scaleX(1);
+  transition-timing-function: linear;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill,
+  .fill.filling {
+    transition: none;
+  }
+}

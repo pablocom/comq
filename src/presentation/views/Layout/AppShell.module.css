@@ -1,0 +1,79 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.settingsGear {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.4;
+  border-radius: 50%;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+
+.settingsGear:hover {
+  opacity: 0.7;
+}
+
+.settingsGear:active {
+  opacity: 1;
+}
+
+.progressRing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progressTrack {
+  stroke: var(--color-border);
+  opacity: 0.5;
+}
+
+.progressArc {
+  stroke: var(--color-scan);
+  transition: stroke-dashoffset 0ms linear;
+}
+
+.progressArc.filling {
+  transition-timing-function: linear;
+}
+
+.gearIcon {
+  position: relative;
+  font-size: 1.5rem;
+  color: var(--color-muted);
+  line-height: 1;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressArc {
+    transition: none;
+  }
+
+  .progressArc.filling {
+    transition: none;
+  }
+}
