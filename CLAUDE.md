@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What is ComQ
 
-ComQ is a web-based AAC (Augmentative and Alternative Communication) system. Patients ("communicators") navigate a configurable tree of needs using scan buttons; caregivers ("facilitators") configure the tree. All UI text is in Spanish; code is in English.
+ComQ is a web-based AAC (Augmentative and Alternative Communication) system. Patients ("communicators") navigate a configurable tree of needs using scan buttons; caregivers ("facilitators") configure the tree. 
 
 ## Commands
 
