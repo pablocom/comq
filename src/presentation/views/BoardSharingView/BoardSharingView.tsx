@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { useServices } from '@presentation/providers/ServiceProvider';
 import { useBoardSharingViewModel } from '@presentation/view-models/useBoardSharingViewModel';
+import { Settings, Home } from 'lucide-react';
 import styles from './BoardSharingView.module.css';
 
 export function BoardSharingView() {
@@ -15,11 +16,21 @@ export function BoardSharingView() {
       <header className={styles.header}>
         <h1 className={styles.title}>Compartir Tableros</h1>
         <div className={styles.headerActions}>
-          <button className={styles.navButton} onClick={() => navigate('/board-editor')}>
-            Editor
+          <button
+            className={styles.navIconButton}
+            onClick={() => navigate('/board-editor')}
+            aria-label="Editor"
+            title="Editor"
+          >
+            <Settings size={20} />
           </button>
-          <button className={styles.navButton} onClick={() => navigate('/')}>
-            Volver al inicio
+          <button
+            className={styles.navIconButton}
+            onClick={() => navigate('/')}
+            aria-label="Volver al inicio"
+            title="Volver al inicio"
+          >
+            <Home size={20} />
           </button>
         </div>
       </header>

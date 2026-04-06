@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp dist/index.html dist/404.html",
+    "build": "tsc && vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -16,6 +16,8 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "lucide-react": "^1.7.0",
+    "mobile-drag-drop": "^3.0.0-rc.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router": "^7.14.0"

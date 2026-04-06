@@ -128,7 +128,7 @@ export function BoardTree({
     <ul
       ref={ulRef}
       className={styles.tree}
-      style={{ paddingLeft: depth > 0 ? '1.5rem' : 0 }}
+      style={{ paddingLeft: depth > 0 ? 'var(--tree-indent, 1.5rem)' : 0 }}
       onDragEnd={handleDragEnd}
     >
       {nodes.map((node, index) => (

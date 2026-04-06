@@ -55,6 +55,7 @@ test.describe('Communicator View - Scanning Journey', () => {
   test('keyboard navigation works: ArrowLeft to scan, Enter to select, Escape to go back', async ({
     page,
   }) => {
+    await expect(page.locator('[role="status"]')).toContainText('Necesidades Básicas');
     await page.keyboard.press('ArrowLeft');
     await expect(page.locator('[role="status"]')).toContainText('Cómo me siento');
 

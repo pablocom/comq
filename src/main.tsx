@@ -2,6 +2,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import './index.css';
+import { polyfill } from 'mobile-drag-drop';
+import 'mobile-drag-drop/default.css';
+
+polyfill({ holdToDrag: 0 });
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

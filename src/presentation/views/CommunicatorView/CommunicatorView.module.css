@@ -52,6 +52,10 @@
 }
 
 .configureButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   margin-top: 1rem;
   padding: 0.75rem 2rem;
   background-color: var(--color-scan);
@@ -94,9 +98,30 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) and (orientation: portrait) {
   .buttonRow {
     gap: 0.5rem;
     padding: 0.75rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .communicatorView {
+    flex-direction: row;
+  }
+  
+  .displayArea {
+    flex: 1;
+    height: 100%;
+  }
+
+  .buttonRow {
+    flex-direction: column;
+    border-top: none;
+    border-left: 2px solid var(--color-border);
+    min-width: 100px;
+    height: 100%;
+    padding: 0.5rem;
+    gap: 0.5rem;
   }
 }

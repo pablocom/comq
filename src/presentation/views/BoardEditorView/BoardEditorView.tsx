@@ -5,6 +5,8 @@ import { BoardManager } from './components/BoardManager/BoardManager';
 import { BoardTree } from './components/BoardTree/BoardTree';
 import styles from './BoardEditorView.module.css';
 
+import { Home, Share2 } from 'lucide-react';
+
 export function BoardEditorView() {
   const navigate = useNavigate();
   const { boardEditorService } = useServices();
@@ -15,11 +17,21 @@ export function BoardEditorView() {
       <header className={styles.header}>
         <h1 className={styles.title}>Configuración</h1>
         <div className={styles.headerActions}>
-          <button className={styles.navButton} onClick={() => navigate('/board-sharing')}>
-            Compartir
+          <button
+            className={styles.navIconButton}
+            onClick={() => navigate('/board-sharing')}
+            aria-label="Compartir"
+            title="Compartir"
+          >
+            <Share2 size={20} />
           </button>
-          <button className={styles.navButton} onClick={() => navigate('/')}>
-            Volver al inicio
+          <button
+            className={styles.navIconButton}
+            onClick={() => navigate('/')}
+            aria-label="Volver al inicio"
+            title="Volver al inicio"
+          >
+            <Home size={20} />
           </button>
         </div>
       </header>

@@ -7,6 +7,8 @@ import { CurrentMessageDisplay } from '@presentation/components/shared/CurrentMe
 import { ScanPath } from '@presentation/components/shared/ScanPath/ScanPath';
 import styles from './CommunicatorView.module.css';
 
+import { Settings } from 'lucide-react';
+
 export function CommunicatorView() {
   const navigate = useNavigate();
   const { scanningAppService, boardEditorService } = useServices();
@@ -62,6 +64,7 @@ export function CommunicatorView() {
           <p className={styles.emptyText}>El tablero está vacío.</p>
           <p className={styles.emptySubtext}>Configura el tablero para comenzar.</p>
           <button className={styles.configureButton} onClick={() => navigate('/board-editor')}>
+            <Settings size={24} />
             Ir a configuración
           </button>
         </div>

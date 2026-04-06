@@ -58,6 +58,12 @@ body {
   outline-offset: 2px;
 }
 
+@media (max-width: 480px) {
+  :root {
+    --tree-indent: 0.5rem;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: #1a1a2e;
