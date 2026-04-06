@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Board Sharing View - Export and Import', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/board-sharing');
+    await page.goto('board-sharing');
   });
 
   test('shows export section with board count', async ({ page }) => {

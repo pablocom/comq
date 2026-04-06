@@ -76,7 +76,7 @@ export function CommunicatorView() {
           <div className={styles.utteranceContent} role="alert" aria-live="assertive">
             <p className={styles.utteranceLabel}>{vm.lastUtterance}</p>
           </div>
-          <div className={styles.buttonColumn}>
+          <div className={styles.buttonRow}>
             <ScanButton
               variant="select"
               label="Aceptar"
@@ -95,7 +95,7 @@ export function CommunicatorView() {
         <ScanPath pathLabels={vm.pathLabels} />
         <CurrentMessageDisplay label={vm.currentLabel} icon={vm.currentIcon} />
       </div>
-      <div className={styles.buttonColumn}>
+      <div className={styles.buttonRow}>
         <ScanButton variant="scan" label="Siguiente" onClick={vm.handleScanNext} />
         <ScanButton variant="select" label="Seleccionar" onClick={vm.handleSelect} />
         <ScanButton

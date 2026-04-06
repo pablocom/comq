@@ -1,6 +1,6 @@
 .communicatorView {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   background-color: var(--color-bg);
 }
@@ -9,17 +9,15 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-width: 0;
+  min-height: 0;
 }
 
-.buttonColumn {
+.buttonRow {
   display: flex;
-  flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
   background-color: var(--color-surface);
-  border-left: 2px solid var(--color-border);
-  min-width: 120px;
+  border-top: 2px solid var(--color-border);
 }
 
 .loading {
@@ -67,7 +65,7 @@
 
 .utteranceOverlay {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -90,10 +88,15 @@
   word-break: break-word;
 }
 
+@media (min-height: 600px) {
+  .buttonRow {
+    min-height: 120px;
+  }
+}
+
 @media (max-width: 480px) {
-  .buttonColumn {
+  .buttonRow {
     gap: 0.5rem;
     padding: 0.75rem;
-    min-width: 90px;
   }
 }

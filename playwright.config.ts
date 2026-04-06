@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: 'http://localhost:4173/comq/',
     trace: 'on-first-retry',
     locale: 'es-ES',
   },
@@ -20,7 +20,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run preview',
-    url: 'http://localhost:4173',
+    url: 'http://localhost:4173/comq/',
     reuseExistingServer: !process.env.CI,
   },
 });

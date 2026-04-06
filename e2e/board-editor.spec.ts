@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Board Editor View - Facilitator Journey', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/board-editor');
+    await page.goto('board-editor');
   });
 
   test('shows the configuration page with default board', async ({ page }) => {
@@ -19,7 +19,7 @@ test.describe('Board Editor View - Facilitator Journey', () => {
 
   test('navigates to sharing view', async ({ page }) => {
     await page.getByRole('button', { name: 'Compartir' }).click();
-    await expect(page.getByText('Compartir Tablero')).toBeVisible();
+    await expect(page.getByText('Compartir Tableros')).toBeVisible();
   });
 
   test('navigates back to communicator view', async ({ page }) => {
@@ -29,7 +29,7 @@ test.describe('Board Editor View - Facilitator Journey', () => {
 
   test('shows the tree content of the active board', async ({ page }) => {
     await expect(page.getByText('Necesidades Básicas')).toBeVisible();
-    await expect(page.getByText('Emociones')).toBeVisible();
-    await expect(page.getByText('Dolor')).toBeVisible();
+    await expect(page.getByText('Cómo me siento')).toBeVisible();
+    await expect(page.getByText('Quiero hacer')).toBeVisible();
   });
 });
