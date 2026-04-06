@@ -43,7 +43,6 @@ export function BoardTree({
   const [dropTarget, setDropTarget] = useState<DropTarget | null>(null);
   const [draggedNodeId, setDraggedNodeId] = useState<string | null>(null);
 
-  // Reset drag state when nodes change (after a move completes and tree re-renders)
   useEffect(() => {
     setDraggedNodeId(null);
     setDropTarget(null);
@@ -172,7 +171,6 @@ export function BoardTree({
         </li>
       ))}
 
-      {/* Final gap */}
       <li className={styles.node}>
         <div
           className={styles.dropZone}

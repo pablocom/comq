@@ -7,13 +7,11 @@
   position: relative;
 }
 
-/* Drop zone: fixed-height invisible target, no layout shift */
 .dropZone {
   position: relative;
   height: 6px;
 }
 
-/* The visible line — absolutely positioned, zero layout impact */
 .dropIndicator {
   position: absolute;
   left: 0;
@@ -32,14 +30,12 @@
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-scan) 30%, transparent);
 }
 
-/* When dragging left: indicator extends to the parent level */
 .dropIndicatorPromoted {
   background-color: var(--color-scan);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-scan) 30%, transparent);
   left: -1.5rem;
 }
 
-/* Node row */
 .nodeRow {
   display: flex;
   align-items: center;
@@ -65,7 +61,6 @@
   box-shadow: inset 0 0 0 2px var(--color-scan);
 }
 
-/* Drag handle */
 .dragHandle {
   flex-shrink: 0;
   font-size: 1rem;

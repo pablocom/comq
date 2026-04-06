@@ -93,15 +93,11 @@ export class BoardEditorService {
     const node = board.findNodeById(nodeId);
     if (!node) throw new Error(`Node not found: ${nodeId}`);
 
-    // Prevent dropping a node into itself or its own descendants
     if (targetParentId && this.isDescendantOf(node, targetParentId)) {
       return board;
     }
 
-    // 1. Remove node from its current location
     const boardWithoutNode = this.removeNodeFromBoard(board, nodeId);
-
-    // 2. Insert node at the target location
     const updated = this.insertNodeAt(boardWithoutNode, node, targetParentId, targetIndex);
     this.repository.save(updated);
     return updated;

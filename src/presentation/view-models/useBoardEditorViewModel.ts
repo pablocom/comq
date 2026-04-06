@@ -68,7 +68,6 @@ export function useBoardEditorViewModel(boardEditorService: BoardEditorService) 
     (parentId: string | null) => {
       if (!state.activeBoardId) return;
       const updated = boardEditorService.addNode(state.activeBoardId, parentId, '');
-      // Find the newly added node (last child of parent, or last root)
       let newNodeId: string | undefined;
       if (parentId === null) {
         newNodeId = updated.rootNodeAt(updated.rootNodeCount() - 1)?.id;
@@ -78,7 +77,6 @@ export function useBoardEditorViewModel(boardEditorService: BoardEditorService) 
       }
       setState((prev) => ({ ...prev, editingNodeId: newNodeId ?? null }));
       refreshState();
-      // Re-set editingNodeId after refresh since refreshState clears nothing but re-derives state
       if (newNodeId) {
         setState((prev) => ({ ...prev, editingNodeId: newNodeId ?? null }));
       }
@@ -98,7 +96,6 @@ export function useBoardEditorViewModel(boardEditorService: BoardEditorService) 
   const updateNodeLabel = useCallback(
     (nodeId: string, label: string) => {
       if (!state.activeBoardId) return;
-      // If label is empty, remove the node (user cancelled creation)
       if (!label.trim()) {
         boardEditorService.removeNode(state.activeBoardId, nodeId);
       } else {

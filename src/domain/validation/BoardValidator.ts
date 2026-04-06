@@ -68,30 +68,6 @@ export class BoardValidator {
   }
 
   validateForCommunicatorUse(board: CommunicationBoard): ValidationResult {
-    const baseResult = this.validate(board);
-    if (!baseResult.valid) return baseResult;
-
-    const errors: ValidationError[] = [];
-    this.validateHasMessages([...board.rootNodes], 'rootNodes', errors);
-
-    return errors.length === 0 ? { valid: true } : { valid: false, errors };
-  }
-
-  private validateHasMessages(
-    nodes: BoardNode[],
-    path: string,
-    errors: ValidationError[],
-  ): void {
-    let hasMessage = false;
-    for (const node of nodes) {
-      if (node.isMessage()) {
-        hasMessage = true;
-      } else {
-        this.validateHasMessages([...node.children], `${path}.${node.id}`, errors);
-      }
-    }
-    if (!hasMessage && nodes.every((n) => n.isCategory())) {
-      // Categories without any reachable messages are fine — messages exist deeper
-    }
+    return this.validate(board);
   }
 }

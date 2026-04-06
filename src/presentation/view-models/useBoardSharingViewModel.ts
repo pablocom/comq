@@ -47,9 +47,7 @@ export function useBoardSharingViewModel(
     try {
       await navigator.clipboard.writeText(state.exportJson);
       setState((prev) => ({ ...prev, copySuccess: true }));
-    } catch {
-      // Clipboard API not available
-    }
+    } catch {}
   }, [state.exportJson]);
 
   const handleImportJsonChange = useCallback((json: string) => {

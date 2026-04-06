@@ -122,17 +122,13 @@ describe('ScanningDomainService', () => {
     it('navigates deeply: root -> category -> subcategory -> message', () => {
       let state = ScanState.initial();
 
-      // Select "Necesidades Básicas" (category)
       const r1 = service.select(board, state);
       expect(r1.kind).toBe('entered-category');
       state = r1.state;
 
-      // Select "Alimentación" (subcategory)
       const r2 = service.select(board, state);
       expect(r2.kind).toBe('entered-category');
       state = r2.state;
-
-      // Select "Tengo hambre" (message)
       const r3 = service.select(board, state);
       expect(r3.kind).toBe('selected-message');
       expect(r3.currentNode.label).toBe('Tengo hambre');
