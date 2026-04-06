@@ -11,33 +11,33 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 0.75rem;
   border-bottom: 2px solid var(--color-border);
   background-color: var(--color-surface);
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
 .headerActions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .navIconButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: transparent;
   color: var(--color-text);
-  font-size: 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.15s;
 }
@@ -48,15 +48,15 @@
 
 .content {
   flex: 1;
-  padding: 1.5rem;
+  padding: 0.75rem;
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
 }
 
 .section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -65,43 +65,43 @@
 }
 
 .sectionHeading {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   color: var(--color-text);
 }
 
 .description {
   color: var(--color-muted);
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
 }
 
 .actionRow {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .primaryButton {
-  padding: 0.5rem 1rem;
+  padding: 0.35rem 0.6rem;
   background-color: var(--color-scan);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
 }
 
 .secondaryButton {
-  padding: 0.5rem 1rem;
+  padding: 0.35rem 0.6rem;
   background-color: transparent;
   color: var(--color-text);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
   cursor: pointer;
 }
 

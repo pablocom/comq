@@ -63,7 +63,12 @@ export function BoardTree({
     (e: DragEvent, gapIndex: number): DropTarget => {
       if (depth > 0 && ulRef.current) {
         const ulLeft = ulRef.current.getBoundingClientRect().left;
-        if (e.clientX < ulLeft + 8) {
+        const clientX =
+          e.clientX !== undefined && e.clientX !== 0
+            ? e.clientX
+            : (e.nativeEvent as any).clientX || (e.nativeEvent as any).touches?.[0]?.clientX || 0;
+
+        if (clientX > 0 && clientX < ulLeft + 8) {
           return {
             kind: 'gap',
             parentId: grandparentId,
