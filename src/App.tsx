@@ -4,7 +4,7 @@ import { AppRouter } from '@presentation/router/AppRouter';
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ServiceProvider>
         <AppRouter />
       </ServiceProvider>
