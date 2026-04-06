@@ -87,8 +87,25 @@ export function useCommunicatorViewModel(
   }, [state.board, state.scanState, scanningService, applyOutput]);
 
   const dismissUtterance = useCallback(() => {
-    setState((prev) => ({ ...prev, lastUtterance: null }));
-  }, []);
+    if (!state.board) {
+      setState((prev) => ({ ...prev, lastUtterance: null }));
+      return;
+    }
+    const output = scanningService.initialize(state.board);
+    if (output) {
+      setState((prev) => ({
+        ...prev,
+        scanState: output.state,
+        currentLabel: output.label,
+        currentIcon: output.icon,
+        pathLabels: output.pathLabels,
+        isAtMessage: output.isAtMessage,
+        lastUtterance: null,
+      }));
+    } else {
+      setState((prev) => ({ ...prev, lastUtterance: null }));
+    }
+  }, [state.board, scanningService]);
 
   const isEmpty = state.isReady && !state.currentLabel;
 

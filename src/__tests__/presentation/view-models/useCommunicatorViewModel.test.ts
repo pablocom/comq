@@ -90,17 +90,19 @@ describe('useCommunicatorViewModel', () => {
     expect(result.current.lastUtterance).toBe('Necesidades, Tengo hambre');
   });
 
-  it('clears utterance on dismiss', () => {
+  it('resets to root on dismiss after selecting a message', () => {
     const { result } = renderHook(() =>
       useCommunicatorViewModel(scanningService, boardEditorService),
     );
 
-    act(() => result.current.handleSelect());
-    act(() => result.current.handleSelect());
+    act(() => result.current.handleSelect()); // enter Necesidades
+    act(() => result.current.handleSelect()); // select "Tengo hambre"
     expect(result.current.lastUtterance).toBe('Necesidades, Tengo hambre');
 
     act(() => result.current.dismissUtterance());
     expect(result.current.lastUtterance).toBeNull();
+    expect(result.current.isAtRoot).toBe(true);
+    expect(result.current.currentLabel).toBe('Necesidades');
   });
 
   it('goes back to parent level on goBack', () => {

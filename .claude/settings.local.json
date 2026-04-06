@@ -17,7 +17,8 @@
       "Bash(git init:*)",
       "Bash(npx vitest:*)",
       "Bash(npx playwright:*)",
-      "Bash(curl -s http://localhost:4173)"
+      "Bash(curl -s http://localhost:4173)",
+      "Bash(grep -v '/$')"
     ]
   }
 }
