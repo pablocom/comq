@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Play, Pencil } from 'lucide-react';
 import type { CommunicationBoard } from '@domain/entities/CommunicationBoard';
 import { HoldToConfirmButton } from '@presentation/components/shared/HoldToConfirmButton/HoldToConfirmButton';
 import styles from './BoardManager.module.css';
@@ -86,10 +87,10 @@ export function BoardManager({
                   autoFocus
                   aria-label="Nuevo nombre del tablero"
                 />
-                <button className={styles.actionButton} onClick={handleRenameConfirm}>
+                <button className={styles.saveButton} onClick={handleRenameConfirm}>
                   Guardar
                 </button>
-                <button className={styles.actionButton} onClick={() => setRenamingId(null)}>
+                <button className={styles.cancelButton} onClick={() => setRenamingId(null)}>
                   Cancelar
                 </button>
               </div>
@@ -99,31 +100,39 @@ export function BoardManager({
                   <span className={styles.boardName}>
                     {board.name}
                     {board.id === activeBoardId && (
-                      <span className={styles.activeBadge}> (activo)</span>
+                      <span className={styles.activeBadge}>activo</span>
                     )}
                   </span>
                   <span className={styles.boardDate}>
-                    Modificado: {new Date(board.updatedAt).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' })}
+                    {new Date(board.updatedAt).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' })}
                   </span>
                 </div>
                 <div className={styles.actions}>
                   {board.id !== activeBoardId && (
                     <button
-                      className={styles.actionButton}
+                      className={styles.iconActionButton}
                       onClick={() => onSwitchActive(board.id)}
+                      aria-label={`Activar tablero ${board.name}`}
+                      title="Activar"
                     >
-                      Activar
+                      <Play size={13} />
                     </button>
                   )}
-                  <button className={styles.actionButton} onClick={() => handleRenameStart(board)}>
-                    Renombrar
+                  <button
+                    className={styles.iconActionButton}
+                    onClick={() => handleRenameStart(board)}
+                    aria-label={`Renombrar tablero ${board.name}`}
+                    title="Renombrar"
+                  >
+                    <Pencil size={13} />
                   </button>
                   {board.id !== activeBoardId && (
                     <HoldToConfirmButton
-                      label="Borrar"
+                      label="✕"
                       holdDurationMs={2000}
                       onConfirm={() => onDelete(board.id)}
                       className={styles.deleteButton}
+                      ariaLabel={`Mantener presionado para borrar ${board.name}`}
                     />
                   )}
                 </div>
@@ -135,4 +144,3 @@ export function BoardManager({
     </section>
   );
 }
-
