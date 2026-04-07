@@ -22,10 +22,21 @@ export function HoldToConfirmButton({
   const vibrate = useHaptic();
 
   const handlePressStart = useCallback(() => {
-    vibrate(12);
+    // Build a pulsing pattern that spans the full hold duration:
+    // 20ms buzz + 40ms silence, repeated until holdDurationMs is covered.
+    const BUZZ = 20;
+    const PAUSE = 40;
+    const cycles = Math.ceil(holdDurationMs / (BUZZ + PAUSE));
+    const pattern: number[] = [];
+    for (let i = 0; i < cycles; i++) {
+      pattern.push(BUZZ);
+      pattern.push(PAUSE);
+    }
+    vibrate(pattern);
+
     setIsPressing(true);
     timerRef.current = setTimeout(() => {
-      vibrate([40, 30, 40]);
+      vibrate([50, 30, 50]); // double-buzz on confirm
       setIsPressing(false);
       onConfirm();
     }, holdDurationMs);
@@ -33,11 +44,12 @@ export function HoldToConfirmButton({
 
   const handlePressEnd = useCallback(() => {
     setIsPressing(false);
+    vibrate(0); // cancel any ongoing vibration pattern
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
-  }, []);
+  }, [vibrate]);
 
   return (
     <button

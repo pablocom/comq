@@ -154,8 +154,8 @@
 }
 
 .iconButton {
-  min-width: 28px;
-  min-height: 28px;
+  min-width: 33px;
+  min-height: 33px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,8 +177,8 @@
 }
 
 .deleteNodeButton {
-  min-width: 28px;
-  min-height: 28px;
+  min-width: 33px;
+  min-height: 33px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,11 +242,10 @@
   .iconButton {
     min-width: 0;
     min-height: 0;
-    width: 22px;
-    height: 22px;
-    font-size: 0.7rem;
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
     padding: 0.2rem;
-    /* Extend tap area without affecting layout */
     position: relative;
   }
 
@@ -254,15 +253,15 @@
   .deleteNodeButton::after {
     content: '';
     position: absolute;
-    inset: -6px;
+    inset: -5px;
   }
 
   .deleteNodeButton {
     min-width: 0;
     min-height: 0;
-    width: 22px;
-    height: 22px;
-    font-size: 0.7rem;
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
     padding: 0.2rem;
     position: relative;
   }
