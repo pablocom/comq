@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
+import { useHaptic } from '@presentation/hooks/useHaptic';
 import styles from './HoldToConfirmButton.module.css';
 
 interface HoldToConfirmButtonProps {
@@ -18,14 +19,17 @@ export function HoldToConfirmButton({
 }: HoldToConfirmButtonProps) {
   const [isPressing, setIsPressing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const vibrate = useHaptic();
 
   const handlePressStart = useCallback(() => {
+    vibrate(12);
     setIsPressing(true);
     timerRef.current = setTimeout(() => {
+      vibrate([40, 30, 40]);
       setIsPressing(false);
       onConfirm();
     }, holdDurationMs);
-  }, [onConfirm, holdDurationMs]);
+  }, [onConfirm, holdDurationMs, vibrate]);
 
   const handlePressEnd = useCallback(() => {
     setIsPressing(false);
@@ -41,7 +45,7 @@ export function HoldToConfirmButton({
       onMouseDown={handlePressStart}
       onMouseUp={handlePressEnd}
       onMouseLeave={handlePressEnd}
-      onTouchStart={(e) => { e.preventDefault(); handlePressStart(); }}
+      onTouchStart={(e) => { e.preventDefault(); e.stopPropagation(); handlePressStart(); }}
       onTouchEnd={handlePressEnd}
       onTouchCancel={handlePressEnd}
       onContextMenu={(e) => e.preventDefault()}

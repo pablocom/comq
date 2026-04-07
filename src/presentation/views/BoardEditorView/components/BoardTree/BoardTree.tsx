@@ -249,7 +249,7 @@ function BoardTreeNode({
         onDragLeave={node.isCategory() ? onDragLeaveCategory : undefined}
         onDrop={node.isCategory() ? onDropOnCategory : undefined}
       >
-        <span className={styles.dragHandle} aria-hidden="true" draggable={false}>
+        <span className={styles.dragHandle} aria-hidden="true">
           ⠿
         </span>
 
@@ -265,7 +265,7 @@ function BoardTreeNode({
             ariaLabel="Editar etiqueta del nodo"
           />
         ) : (
-          <span className={styles.nodeLabel} draggable={false} onDoubleClick={() => onStartEdit(node.id)}>
+          <span className={styles.nodeLabel} onDoubleClick={() => onStartEdit(node.id)}>
             {node.label}
           </span>
         )}

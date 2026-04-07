@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
+import { useHaptic } from '@presentation/hooks/useHaptic';
 import styles from './AppShell.module.css';
 
 const LONG_PRESS_DURATION_MS = 3000;
@@ -15,14 +16,17 @@ export function AppShell({ children, showSettingsGear = true }: AppShellProps) {
   const navigate = useNavigate();
   const [isPressing, setIsPressing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const vibrate = useHaptic();
 
   const handlePressStart = useCallback(() => {
+    vibrate(12);
     setIsPressing(true);
     timerRef.current = setTimeout(() => {
+      vibrate([30, 20, 30]);
       setIsPressing(false);
       navigate('/board-editor');
     }, LONG_PRESS_DURATION_MS);
-  }, [navigate]);
+  }, [navigate, vibrate]);
 
   const handlePressEnd = useCallback(() => {
     setIsPressing(false);
@@ -40,9 +44,10 @@ export function AppShell({ children, showSettingsGear = true }: AppShellProps) {
           onMouseDown={handlePressStart}
           onMouseUp={handlePressEnd}
           onMouseLeave={handlePressEnd}
-          onTouchStart={handlePressStart}
+          onTouchStart={(e) => { e.preventDefault(); handlePressStart(); }}
           onTouchEnd={handlePressEnd}
           onTouchCancel={handlePressEnd}
+          onContextMenu={(e) => e.preventDefault()}
           aria-label="Mantener presionado 3 segundos para configuración"
           title="Mantener presionado para configurar"
         >
