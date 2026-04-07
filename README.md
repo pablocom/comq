@@ -1,6 +1,6 @@
 # ComQ
 
-A web-based AAC (Augmentative and Alternative Communication) system that helps patients with brain damage communicate their needs.
+A web-based AAC (Augmentative and Alternative Communication) system that helps people communicate their needs.
 
 Communicators navigate a configurable tree of categories and messages using three large buttons — scan, select, and back. Each step is spoken aloud via text-to-speech and confirmed with haptic vibration. Facilitators configure the communication boards through a drag-and-drop tree editor.
 
