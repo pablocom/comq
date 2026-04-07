@@ -234,12 +234,15 @@ function BoardTreeNode({
   depth,
 }: BoardTreeNodeProps) {
   const isEditing = editingNodeId === node.id;
+  // Disable draggable while an action button is being touched so the
+  // browser's long-press drag gesture doesn't fire during hold-to-confirm.
+  const [dragEnabled, setDragEnabled] = useState(true);
 
   return (
     <>
       <div
         className={`${styles.nodeRow} ${isDragging ? styles.dragging : ''} ${isDropTargetCategory && node.isCategory() ? styles.dropTargetCategory : ''}`}
-        draggable={!isEditing}
+        draggable={!isEditing && dragEnabled}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         onDragOver={node.isCategory() ? onDragOverCategory : undefined}
@@ -267,7 +270,12 @@ function BoardTreeNode({
           </span>
         )}
 
-        <div className={styles.nodeActions}>
+        <div
+          className={styles.nodeActions}
+          onTouchStart={() => setDragEnabled(false)}
+          onTouchEnd={() => setDragEnabled(true)}
+          onTouchCancel={() => setDragEnabled(true)}
+        >
           <button
             className={styles.iconButton}
             onClick={() => onStartEdit(node.id)}

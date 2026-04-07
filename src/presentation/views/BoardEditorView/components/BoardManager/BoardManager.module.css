@@ -198,23 +198,60 @@
 }
 
 /* ─── Mobile ─── */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .manager {
-    padding: 0.75rem;
+    padding: 0.5rem 0.6rem;
+    margin-bottom: 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .heading {
+    font-size: var(--ui-text-base);
+    margin-bottom: 0.4rem;
+  }
+
+  .createRow {
+    gap: 0.35rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .input {
+    min-height: 34px;
+    padding: 0.35rem 0.5rem;
+    font-size: var(--ui-text-xs);
+  }
+
+  .createButton {
+    min-height: 34px;
+    padding: 0.35rem 0.6rem;
+    font-size: var(--ui-text-xs);
+  }
+
+  .boardList {
+    gap: 0.25rem;
   }
 
   .boardItem {
-    flex-direction: column;
-    align-items: stretch;
+    padding: 0.4rem 0.5rem;
+    gap: 0.35rem;
+  }
+
+  .boardName {
+    font-size: var(--ui-text-xs);
+  }
+
+  .boardDate {
+    display: none;
   }
 
   .actions {
-    justify-content: flex-end;
+    gap: 0.25rem;
   }
 
   .actionButton,
   .deleteButton {
-    min-height: 38px;
-    padding: 0.45rem 0.75rem;
+    min-height: 28px;
+    padding: 0.2rem 0.45rem;
+    font-size: var(--ui-text-xs);
   }
 }
