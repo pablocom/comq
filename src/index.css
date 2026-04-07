@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
 :root {
-  --color-bg: #fafafa;
-  --color-text: #1a1a1a;
+  --color-bg: #f5f7fa;
+  --color-text: #1a1a2e;
   --color-scan: #2563eb;
   --color-scan-hover: #1d4ed8;
   --color-select: #16a34a;
@@ -8,15 +10,30 @@
   --color-back: #dc2626;
   --color-back-hover: #b91c1c;
   --color-surface: #ffffff;
-  --color-border: #e5e7eb;
-  --color-muted: #6b7280;
+  --color-border: #e2e8f0;
+  --color-muted: #64748b;
+  --color-muted-bg: #f1f5f9;
+
+  --font-family: 'Nunito', system-ui, -apple-system, sans-serif;
 
   --font-size-body: 1.5rem;
   --font-size-display: 2.5rem;
   --font-size-button: 1.5rem;
 
+  /* Admin UI font sizes (rem relative to html 16px) */
+  --ui-text-xs: 0.75rem;
+  --ui-text-sm: 0.875rem;
+  --ui-text-base: 1rem;
+  --ui-text-lg: 1.125rem;
+  --ui-text-xl: 1.25rem;
+
   --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
   --button-min-size: 80px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 *,
@@ -30,7 +47,7 @@
 html,
 body {
   height: 100%;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-family);
   font-size: var(--font-size-body);
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -54,22 +71,25 @@ body {
 }
 
 :focus-visible {
-  outline: 4px solid #fbbf24;
+  outline: 3px solid #fbbf24;
   outline-offset: 2px;
 }
 
 @media (max-width: 480px) {
   :root {
-    --tree-indent: 0.5rem;
+    --tree-indent: 0.75rem;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #1a1a2e;
-    --color-text: #f0f0f0;
-    --color-surface: #16213e;
-    --color-border: #374151;
-    --color-muted: #9ca3af;
+    --color-bg: #0f172a;
+    --color-text: #f1f5f9;
+    --color-surface: #1e293b;
+    --color-border: #334155;
+    --color-muted: #94a3b8;
+    --color-muted-bg: #1e293b;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }

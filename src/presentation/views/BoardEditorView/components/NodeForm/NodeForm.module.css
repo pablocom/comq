@@ -4,40 +4,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
   z-index: 100;
   padding: 1rem;
 }
 
 .form {
   background-color: var(--color-surface);
-  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
   padding: 1.5rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-size: var(--ui-text-base);
 }
 
 .heading {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: var(--ui-text-lg);
+  font-weight: 700;
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 .input {
-  padding: 0.5rem 0.75rem;
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 0.6rem 0.875rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-base);
+  font-family: var(--font-family);
   background-color: var(--color-bg);
   color: var(--color-text);
+  transition: border-color 0.12s, box-shadow 0.12s;
+  min-height: 44px;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--color-scan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-scan) 18%, transparent);
 }
 
 .actions {
@@ -47,27 +56,46 @@
 }
 
 .confirmButton {
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.25rem;
   background-color: var(--color-select);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-base);
+  font-family: var(--font-family);
+  font-weight: 700;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.12s;
+  min-height: 44px;
+}
+
+.confirmButton:hover:not(:disabled) {
+  background-color: var(--color-select-hover);
 }
 
 .confirmButton:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
 .cancelButton {
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.25rem;
   background-color: transparent;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  font-size: 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-base);
+  font-family: var(--font-family);
+  font-weight: 600;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.12s;
+  min-height: 44px;
+}
+
+.cancelButton:hover {
+  background-color: var(--color-muted-bg);
 }

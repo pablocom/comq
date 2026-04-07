@@ -1,25 +1,170 @@
+/* ─── Main container ─── */
 .communicatorView {
   display: flex;
   flex-direction: column;
   height: 100%;
   background-color: var(--color-bg);
+  overflow: hidden;
 }
 
-.displayArea {
+/* ─── Button grid (fills all remaining height) ─── */
+.buttonGrid {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   min-height: 0;
 }
 
-.buttonRow {
+/* Shared base for all three action buttons */
+.gridButton {
   display: flex;
-  gap: 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  transition: filter 0.08s ease;
   padding: 1rem;
-  background-color: var(--color-surface);
-  border-top: 2px solid var(--color-border);
+  width: 100%;
 }
 
+.gridButton:active {
+  filter: brightness(0.85);
+}
+
+.gridButton:focus-visible {
+  outline: 4px solid #fbbf24;
+  outline-offset: -4px;
+  z-index: 1;
+}
+
+.gridButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ─── Select button (top, ~60% height) ─── */
+.selectButton {
+  flex: 3;
+  background-color: var(--color-select);
+  color: #ffffff;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.12);
+  gap: 0.75rem;
+}
+
+.selectButton:active:not(:disabled) {
+  filter: brightness(0.88);
+}
+
+/* ─── Bottom row container ─── */
+.bottomRow {
+  flex: 2;
+  display: flex;
+}
+
+/* ─── Siguiente / Next (bottom-left) ─── */
+.nextButton {
+  flex: 1;
+  background-color: var(--color-scan);
+  color: #ffffff;
+  border-right: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Volver / Back (bottom-right) ─── */
+.backButton {
+  flex: 1;
+  background-color: var(--color-back);
+  color: #ffffff;
+}
+
+/* ─── Current item display (inside select button) ─── */
+.itemIcon {
+  font-size: 3rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.itemLabel {
+  font-size: var(--font-size-display);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  max-width: 90%;
+  pointer-events: none;
+}
+
+.buttonHint {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.buttonIcon {
+  font-size: 2rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.buttonLabel {
+  font-size: var(--font-size-button);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* ─── Full-screen utterance button ─── */
+.fullScreenButton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  transition: filter 0.08s ease;
+  padding: 2rem;
+  width: 100%;
+}
+
+.fullScreenButton:active {
+  filter: brightness(0.88);
+}
+
+.fullScreenButton:focus-visible {
+  outline: 4px solid #fbbf24;
+  outline-offset: -4px;
+}
+
+.acceptButton {
+  background-color: var(--color-select);
+  color: #ffffff;
+}
+
+.utteranceText {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  max-width: 90%;
+}
+
+/* ─── Loading ─── */
 .loading {
   display: flex;
   align-items: center;
@@ -29,6 +174,7 @@
   color: var(--color-muted);
 }
 
+/* ─── Empty board ─── */
 .emptyBoard {
   display: flex;
   flex-direction: column;
@@ -65,63 +211,54 @@
   font-size: var(--font-size-body);
   font-weight: 600;
   cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.utteranceOverlay {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+/* ─── Visually hidden accessibility live region ─── */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.utteranceContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  padding: 2rem;
-  background-color: var(--color-select);
-}
-
-.utteranceLabel {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-align: center;
-  line-height: 1.2;
-  word-break: break-word;
-}
-
-@media (min-height: 600px) {
-  .buttonRow {
-    min-height: 120px;
-  }
-}
-
-@media (max-width: 480px) and (orientation: portrait) {
-  .buttonRow {
-    gap: 0.5rem;
-    padding: 0.75rem;
-  }
-}
-
+/* ─── Landscape on small screens ─── */
 @media (max-height: 500px) and (orientation: landscape) {
-  .communicatorView {
+  .buttonGrid {
     flex-direction: row;
   }
-  
-  .displayArea {
-    flex: 1;
-    height: 100%;
+
+  .selectButton {
+    flex: 2;
+    border-bottom: none;
+    border-right: 3px solid rgba(0, 0, 0, 0.12);
   }
 
-  .buttonRow {
+  .bottomRow {
+    flex: 1;
     flex-direction: column;
-    border-top: none;
-    border-left: 2px solid var(--color-border);
-    min-width: 100px;
-    height: 100%;
-    padding: 0.5rem;
-    gap: 0.5rem;
+  }
+
+  .nextButton {
+    border-right: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .itemLabel {
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gridButton,
+  .fullScreenButton {
+    transition: none;
   }
 }

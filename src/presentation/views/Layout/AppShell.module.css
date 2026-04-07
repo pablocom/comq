@@ -9,25 +9,27 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  z-index: 10;
-  width: 48px;
-  height: 48px;
+  z-index: 30;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background: transparent;
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.3;
   border-radius: 50%;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
   transition: opacity 0.2s;
   padding: 0;
 }
 
 .settingsGear:hover {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .settingsGear:active {
@@ -44,7 +46,7 @@
 
 .progressTrack {
   stroke: var(--color-border);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .progressArc {
@@ -58,7 +60,7 @@
 
 .gearIcon {
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--color-muted);
   line-height: 1;
 }
@@ -66,13 +68,12 @@
 .content {
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .progressArc {
-    transition: none;
-  }
-
+  .progressArc,
   .progressArc.filling {
     transition: none;
   }

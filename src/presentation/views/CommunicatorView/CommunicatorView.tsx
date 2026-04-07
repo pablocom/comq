@@ -2,8 +2,6 @@ import { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import { useServices } from '@presentation/providers/ServiceProvider';
 import { useCommunicatorViewModel } from '@presentation/view-models/useCommunicatorViewModel';
-import { ScanButton } from '@presentation/components/shared/ScanButton/ScanButton';
-import { CurrentMessageDisplay } from '@presentation/components/shared/CurrentMessageDisplay/CurrentMessageDisplay';
 import { ScanPath } from '@presentation/components/shared/ScanPath/ScanPath';
 import styles from './CommunicatorView.module.css';
 
@@ -75,38 +73,78 @@ export function CommunicatorView() {
   if (vm.lastUtterance) {
     return (
       <main className={styles.communicatorView}>
-        <div className={styles.utteranceOverlay}>
-          <div className={styles.utteranceContent} role="alert" aria-live="assertive">
-            <p className={styles.utteranceLabel}>{vm.lastUtterance}</p>
-          </div>
-          <div className={styles.buttonRow}>
-            <ScanButton
-              variant="select"
-              label="Aceptar"
-              onClick={vm.dismissUtterance}
-              autoFocus
-            />
-          </div>
+        {/* Hidden live region announces utterance to screen readers */}
+        <div
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          className={styles.srOnly}
+        >
+          {vm.lastUtterance}
         </div>
+        <button
+          className={`${styles.fullScreenButton} ${styles.acceptButton}`}
+          onClick={vm.dismissUtterance}
+          aria-label={`Aceptar: ${vm.lastUtterance}`}
+          autoFocus
+        >
+          <span className={styles.utteranceText}>{vm.lastUtterance}</span>
+          <span className={styles.buttonHint}>Aceptar ✓</span>
+        </button>
       </main>
     );
   }
 
   return (
     <main className={styles.communicatorView}>
-      <div className={styles.displayArea}>
-        <ScanPath pathLabels={vm.pathLabels} />
-        <CurrentMessageDisplay label={vm.currentLabel} icon={vm.currentIcon} />
+      {/* Breadcrumb path at top */}
+      <ScanPath pathLabels={vm.pathLabels} />
+
+      {/* Hidden live region announces current item during scanning */}
+      <div
+        aria-live="assertive"
+        aria-atomic="true"
+        className={styles.srOnly}
+      >
+        {vm.currentLabel}
       </div>
-      <div className={styles.buttonRow}>
-        <ScanButton variant="scan" label="Siguiente" onClick={vm.handleScanNext} />
-        <ScanButton variant="select" label="Seleccionar" onClick={vm.handleSelect} />
-        <ScanButton
-          variant="back"
-          label="Volver"
-          onClick={vm.handleGoBack}
-          disabled={vm.isAtRoot}
-        />
+
+      <div className={styles.buttonGrid}>
+        {/* Top: Select button — shows current item and confirms selection */}
+        <button
+          className={`${styles.gridButton} ${styles.selectButton}`}
+          onClick={vm.handleSelect}
+          aria-label={`Seleccionar: ${vm.currentLabel}`}
+        >
+          <span className={styles.itemIcon} aria-hidden="true">
+            {vm.currentIcon}
+          </span>
+          <span className={styles.itemLabel}>{vm.currentLabel}</span>
+          <span className={styles.buttonHint} aria-hidden="true">
+            Seleccionar ✓
+          </span>
+        </button>
+
+        {/* Bottom row: Siguiente (left) + Volver (right) */}
+        <div className={styles.bottomRow}>
+          <button
+            className={`${styles.gridButton} ${styles.nextButton}`}
+            onClick={vm.handleScanNext}
+            aria-label="Siguiente"
+          >
+            <span className={styles.buttonIcon} aria-hidden="true">▶</span>
+            <span className={styles.buttonLabel}>Siguiente</span>
+          </button>
+          <button
+            className={`${styles.gridButton} ${styles.backButton}`}
+            onClick={vm.handleGoBack}
+            disabled={vm.isAtRoot}
+            aria-label="Volver"
+          >
+            <span className={styles.buttonIcon} aria-hidden="true">◀</span>
+            <span className={styles.buttonLabel}>Volver</span>
+          </button>
+        </div>
       </div>
     </main>
   );

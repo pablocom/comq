@@ -41,9 +41,10 @@ export function HoldToConfirmButton({
       onMouseDown={handlePressStart}
       onMouseUp={handlePressEnd}
       onMouseLeave={handlePressEnd}
-      onTouchStart={handlePressStart}
+      onTouchStart={(e) => { e.preventDefault(); handlePressStart(); }}
       onTouchEnd={handlePressEnd}
       onTouchCancel={handlePressEnd}
+      onContextMenu={(e) => e.preventDefault()}
       aria-label={ariaLabel ?? `Mantener presionado para ${label.toLowerCase()}`}
       title={`Mantener presionado para ${label.toLowerCase()}`}
     >

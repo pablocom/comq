@@ -3,118 +3,180 @@
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
+  font-size: var(--ui-text-base);
 }
 
+/* ─── Header ─── */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
   border-bottom: 2px solid var(--color-border);
   background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 .title {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: var(--ui-text-xl);
+  font-weight: 800;
   color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
 .headerActions {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .navIconButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  background-color: transparent;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
   color: var(--color-text);
-  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: background-color 0.12s, border-color 0.12s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .navIconButton:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-muted-bg);
+  border-color: var(--color-muted);
 }
 
+/* ─── Content ─── */
 .content {
   flex: 1;
-  padding: 0.75rem;
+  padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
+/* ─── Sections ─── */
 .section {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.section:last-child {
-  border-bottom: none;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .sectionHeading {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
+  font-size: var(--ui-text-lg);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 .description {
   color: var(--color-muted);
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  font-size: var(--ui-text-sm);
+  line-height: 1.5;
 }
 
+/* ─── Action row ─── */
 .actionRow {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
+/* ─── Buttons ─── */
 .primaryButton {
-  padding: 0.35rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1rem;
   background-color: var(--color-scan);
   color: #ffffff;
   border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-sm);
+  font-family: var(--font-family);
+  font-weight: 700;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.12s;
+  white-space: nowrap;
+  min-height: 40px;
+}
+
+.primaryButton:hover {
+  background-color: var(--color-scan-hover);
 }
 
 .secondaryButton {
-  padding: 0.35rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1rem;
   background-color: transparent;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  font-size: 0.85rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-sm);
+  font-family: var(--font-family);
+  font-weight: 600;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+  min-height: 40px;
 }
 
 .secondaryButton:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-muted-bg);
+  border-color: var(--color-muted);
+}
+
+.importButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1.5rem;
+  background-color: var(--color-select);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-base);
+  font-family: var(--font-family);
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.12s;
+  width: 100%;
+}
+
+.importButton:hover {
+  background-color: var(--color-select-hover);
 }
 
 .hiddenInput {
   display: none;
 }
 
+/* ─── JSON preview ─── */
 .jsonPreview {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .jsonActions {
@@ -122,99 +184,122 @@
 }
 
 .jsonCode {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 1rem;
-  font-size: 0.8rem;
+  background-color: var(--color-muted-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: var(--ui-text-xs);
+  font-family: 'Courier New', Courier, monospace;
   overflow-x: auto;
-  max-height: 300px;
+  max-height: 280px;
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-all;
+  color: var(--color-text);
+  line-height: 1.5;
 }
 
+/* ─── Import textarea ─── */
 .importTextarea {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-family: monospace;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-text-xs);
+  font-family: 'Courier New', Courier, monospace;
   resize: vertical;
-  background-color: var(--color-surface);
+  background-color: var(--color-bg);
   color: var(--color-text);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  transition: border-color 0.12s, box-shadow 0.12s;
+  min-height: 140px;
 }
 
 .importTextarea:focus {
   outline: none;
   border-color: var(--color-scan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-scan) 18%, transparent);
 }
 
+/* ─── Error box ─── */
 .errorBox {
-  padding: 1rem;
-  border: 2px solid var(--color-back);
-  border-radius: 8px;
-  background-color: color-mix(in srgb, var(--color-back) 10%, var(--color-surface));
-  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--color-back);
+  border-radius: var(--radius-sm);
+  background-color: color-mix(in srgb, var(--color-back) 8%, var(--color-surface));
+  margin-top: 0.75rem;
 }
 
 .errorTitle {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--ui-text-sm);
+  font-weight: 700;
   color: var(--color-back);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .errorList {
   list-style: disc;
-  padding-left: 1.5rem;
-  font-size: 0.9rem;
+  padding-left: 1.25rem;
+  font-size: var(--ui-text-sm);
   color: var(--color-text);
+  line-height: 1.5;
 }
 
+/* ─── Preview box ─── */
 .previewBox {
-  padding: 1rem;
-  border: 2px solid var(--color-select);
-  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--color-select);
+  border-radius: var(--radius-sm);
   background-color: color-mix(in srgb, var(--color-select) 5%, var(--color-surface));
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .previewTitle {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--ui-text-sm);
+  font-weight: 700;
   color: var(--color-select);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .previewList {
   list-style: disc;
-  padding-left: 1.5rem;
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
+  padding-left: 1.25rem;
+  margin: 0.4rem 0;
+  font-size: var(--ui-text-sm);
   color: var(--color-text);
+  line-height: 1.6;
 }
 
-.importButton {
-  margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
-  background-color: var(--color-select);
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
+/* ─── Success box ─── */
 .successBox {
-  padding: 1rem;
-  border: 2px solid var(--color-select);
-  border-radius: 8px;
-  background-color: color-mix(in srgb, var(--color-select) 10%, var(--color-surface));
-  color: var(--color-select);
-  font-weight: 600;
-  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--color-select);
+  border-radius: var(--radius-sm);
+  background-color: color-mix(in srgb, var(--color-select) 8%, var(--color-surface));
+  color: color-mix(in srgb, var(--color-select) 80%, var(--color-text));
+  font-weight: 700;
+  font-size: var(--ui-text-sm);
+  margin-top: 0.75rem;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 480px) {
+  .header {
+    padding: 0.75rem;
+  }
+
+  .content {
+    padding: 0.75rem;
+  }
+
+  .section {
+    padding: 0.875rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    min-height: 44px;
+    font-size: var(--ui-text-base);
+  }
 }
