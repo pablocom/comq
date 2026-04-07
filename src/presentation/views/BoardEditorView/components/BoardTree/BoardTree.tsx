@@ -234,15 +234,51 @@ function BoardTreeNode({
   depth,
 }: BoardTreeNodeProps) {
   const isEditing = editingNodeId === node.id;
-  // Disable draggable while an action button is being touched so the
-  // browser's long-press drag gesture doesn't fire during hold-to-confirm.
-  const [dragEnabled, setDragEnabled] = useState(true);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const isEditingRef = useRef(isEditing);
+  useEffect(() => { isEditingRef.current = isEditing; }, [isEditing]);
+
+  // Use capture-phase touch listeners so we can synchronously toggle
+  // `draggable` before the browser decides to start a drag gesture.
+  // Capture fires top-down, BEFORE any child's stopPropagation takes effect,
+  // which is why the old React-state approach (async) and the bubbling
+  // onTouchStart approach (blocked by HoldToConfirmButton's stopPropagation)
+  // both failed to prevent drag on mobile.
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if ((e.target as HTMLElement).closest('button')) {
+        row.draggable = false;
+      }
+    };
+
+    const onTouchEnd = () => {
+      // Brief delay so the browser fully cancels any in-progress drag gesture
+      // before we re-enable draggable.
+      setTimeout(() => {
+        if (!isEditingRef.current) row.draggable = true;
+      }, 80);
+    };
+
+    row.addEventListener('touchstart', onTouchStart, { capture: true });
+    row.addEventListener('touchend', onTouchEnd, { capture: true });
+    row.addEventListener('touchcancel', onTouchEnd, { capture: true });
+
+    return () => {
+      row.removeEventListener('touchstart', onTouchStart, { capture: true });
+      row.removeEventListener('touchend', onTouchEnd, { capture: true });
+      row.removeEventListener('touchcancel', onTouchEnd, { capture: true });
+    };
+  }, []);
 
   return (
     <>
       <div
+        ref={rowRef}
         className={`${styles.nodeRow} ${isDragging ? styles.dragging : ''} ${isDropTargetCategory && node.isCategory() ? styles.dropTargetCategory : ''}`}
-        draggable={!isEditing && dragEnabled}
+        draggable={!isEditing}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         onDragOver={node.isCategory() ? onDragOverCategory : undefined}
@@ -270,12 +306,7 @@ function BoardTreeNode({
           </span>
         )}
 
-        <div
-          className={styles.nodeActions}
-          onTouchStart={() => setDragEnabled(false)}
-          onTouchEnd={() => setDragEnabled(true)}
-          onTouchCancel={() => setDragEnabled(true)}
-        >
+        <div className={styles.nodeActions}>
           <button
             className={styles.iconButton}
             onClick={() => onStartEdit(node.id)}
