@@ -285,10 +285,6 @@ function BoardTreeNode({
         onDragLeave={node.isCategory() ? onDragLeaveCategory : undefined}
         onDrop={node.isCategory() ? onDropOnCategory : undefined}
       >
-        <span className={styles.dragHandle} aria-hidden="true">
-          ⠿
-        </span>
-
         <span className={styles.nodeIcon} aria-hidden="true" draggable={false}>
           {node.displayIcon()}
         </span>
