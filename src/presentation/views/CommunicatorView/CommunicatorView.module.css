@@ -44,7 +44,7 @@
 }
 
 .gridButton:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
@@ -57,8 +57,28 @@
   gap: 0.75rem;
 }
 
-.selectButton:active:not(:disabled) {
+.selectButton:active:not([aria-disabled='true']) {
   filter: brightness(0.88);
+}
+
+/* ─── Utterance display state (select button, non-interactive) ─── */
+.utteranceDisplay {
+  pointer-events: none;
+  cursor: default;
+  /* Full opacity — the result text must be clearly readable */
+  opacity: 1 !important;
+  gap: 0;
+}
+
+/* ─── Utterance text (shown inside select area after a leaf is reached) ─── */
+.utteranceText {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  max-width: 90%;
+  pointer-events: none;
 }
 
 /* ─── Bottom row container ─── */
@@ -82,7 +102,7 @@
   color: #ffffff;
 }
 
-/* ─── Current item display (inside select button) ─── */
+/* ─── Current item display (inside select button, normal state) ─── */
 .itemIcon {
   font-size: 3rem;
   line-height: 1;
@@ -120,48 +140,6 @@
   letter-spacing: 0.06em;
   font-weight: 700;
   pointer-events: none;
-}
-
-/* ─── Full-screen utterance button ─── */
-.fullScreenButton {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  border: none;
-  cursor: pointer;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  transition: filter 0.08s ease;
-  padding: 2rem;
-  width: 100%;
-}
-
-.fullScreenButton:active {
-  filter: brightness(0.88);
-}
-
-.fullScreenButton:focus-visible {
-  outline: 4px solid #fbbf24;
-  outline-offset: -4px;
-}
-
-.acceptButton {
-  background-color: var(--color-select);
-  color: #ffffff;
-}
-
-.utteranceText {
-  font-size: 3.5rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.2;
-  word-break: break-word;
-  max-width: 90%;
 }
 
 /* ─── Loading ─── */
@@ -254,11 +232,14 @@
   .itemLabel {
     font-size: 2rem;
   }
+
+  .utteranceText {
+    font-size: 2rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gridButton,
-  .fullScreenButton {
+  .gridButton {
     transition: none;
   }
 }

@@ -12,6 +12,8 @@ export function CommunicatorView() {
   const { scanningAppService, boardEditorService } = useServices();
   const vm = useCommunicatorViewModel(scanningAppService, boardEditorService);
 
+  const isUtteranceState = !!vm.lastUtterance;
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (!vm.isReady) return;
@@ -20,7 +22,7 @@ export function CommunicatorView() {
         case 'Tab':
         case 'ArrowLeft':
           e.preventDefault();
-          vm.handleScanNext();
+          if (!vm.lastUtterance) vm.handleScanNext();
           break;
         case 'Enter':
         case ' ':
@@ -33,7 +35,11 @@ export function CommunicatorView() {
           break;
         case 'Escape':
           e.preventDefault();
-          vm.handleGoBack();
+          if (vm.lastUtterance) {
+            vm.dismissUtterance();
+          } else {
+            vm.handleGoBack();
+          }
           break;
       }
     },
@@ -70,75 +76,66 @@ export function CommunicatorView() {
     );
   }
 
-  if (vm.lastUtterance) {
-    return (
-      <main className={styles.communicatorView}>
-        {/* Hidden live region announces utterance to screen readers */}
-        <div
-          role="alert"
-          aria-live="assertive"
-          aria-atomic="true"
-          className={styles.srOnly}
-        >
-          {vm.lastUtterance}
-        </div>
-        <button
-          className={`${styles.fullScreenButton} ${styles.acceptButton}`}
-          onClick={vm.dismissUtterance}
-          aria-label={`Aceptar: ${vm.lastUtterance}`}
-          autoFocus
-        >
-          <span className={styles.utteranceText}>{vm.lastUtterance}</span>
-          <span className={styles.buttonHint}>Aceptar ✓</span>
-        </button>
-      </main>
-    );
-  }
-
   return (
     <main className={styles.communicatorView}>
-      {/* Breadcrumb path at top */}
       <ScanPath pathLabels={vm.pathLabels} />
 
-      {/* Hidden live region announces current item during scanning */}
+      {/* Screen-reader live region */}
       <div
+        role={isUtteranceState ? 'alert' : undefined}
         aria-live="assertive"
         aria-atomic="true"
         className={styles.srOnly}
       >
-        {vm.currentLabel}
+        {isUtteranceState ? vm.lastUtterance : vm.currentLabel}
       </div>
 
       <div className={styles.buttonGrid}>
-        {/* Top: Select button — shows current item and confirms selection */}
+        {/*
+         * Top: Select button
+         * – Normal state:  shows current item, click = select
+         * – Utterance state: shows result text (big), not interactive
+         */}
         <button
-          className={`${styles.gridButton} ${styles.selectButton}`}
-          onClick={vm.handleSelect}
-          aria-label={`Seleccionar: ${vm.currentLabel}`}
+          className={`${styles.gridButton} ${styles.selectButton} ${isUtteranceState ? styles.utteranceDisplay : ''}`}
+          onClick={isUtteranceState ? undefined : vm.handleSelect}
+          aria-disabled={isUtteranceState}
+          aria-label={isUtteranceState ? vm.lastUtterance! : `Seleccionar: ${vm.currentLabel}`}
+          tabIndex={isUtteranceState ? -1 : 0}
         >
-          <span className={styles.itemIcon} aria-hidden="true">
-            {vm.currentIcon}
-          </span>
-          <span className={styles.itemLabel}>{vm.currentLabel}</span>
-          <span className={styles.buttonHint} aria-hidden="true">
-            Seleccionar ✓
-          </span>
+          {isUtteranceState ? (
+            <span className={styles.utteranceText}>{vm.lastUtterance}</span>
+          ) : (
+            <>
+              <span className={styles.itemIcon} aria-hidden="true">
+                {vm.currentIcon}
+              </span>
+              <span className={styles.itemLabel}>{vm.currentLabel}</span>
+              <span className={styles.buttonHint} aria-hidden="true">
+                Seleccionar ✓
+              </span>
+            </>
+          )}
         </button>
 
-        {/* Bottom row: Siguiente (left) + Volver (right) */}
+        {/* Bottom row */}
         <div className={styles.bottomRow}>
+          {/* Siguiente — disabled while utterance is showing */}
           <button
             className={`${styles.gridButton} ${styles.nextButton}`}
             onClick={vm.handleScanNext}
+            disabled={isUtteranceState}
             aria-label="Siguiente"
           >
             <span className={styles.buttonIcon} aria-hidden="true">▶</span>
             <span className={styles.buttonLabel}>Siguiente</span>
           </button>
+
+          {/* Volver — always available; dismisses utterance or goes back */}
           <button
             className={`${styles.gridButton} ${styles.backButton}`}
-            onClick={vm.handleGoBack}
-            disabled={vm.isAtRoot}
+            onClick={isUtteranceState ? vm.dismissUtterance : vm.handleGoBack}
+            disabled={!isUtteranceState && vm.isAtRoot}
             aria-label="Volver"
           >
             <span className={styles.buttonIcon} aria-hidden="true">◀</span>
