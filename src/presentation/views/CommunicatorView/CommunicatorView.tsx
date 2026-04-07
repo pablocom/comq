@@ -7,6 +7,17 @@ import styles from './CommunicatorView.module.css';
 
 import { Settings } from 'lucide-react';
 
+/** Scale font-size down so longer labels always fit inside the green panel. */
+function getLabelFontSize(text: string): string {
+  const n = text.length;
+  if (n <= 6)  return '2.5rem';
+  if (n <= 12) return '2.1rem';
+  if (n <= 20) return '1.75rem';
+  if (n <= 32) return '1.35rem';
+  if (n <= 50) return '1.05rem';
+  return '0.85rem';
+}
+
 export function CommunicatorView() {
   const navigate = useNavigate();
   const { scanningAppService, boardEditorService } = useServices();
@@ -104,13 +115,17 @@ export function CommunicatorView() {
           tabIndex={isUtteranceState ? -1 : 0}
         >
           {isUtteranceState ? (
-            <span className={styles.utteranceText}>{vm.lastUtterance}</span>
+            <span className={styles.utteranceText} style={{ fontSize: getLabelFontSize(vm.lastUtterance!) }}>
+            {vm.lastUtterance}
+          </span>
           ) : (
             <>
               <span className={styles.itemIcon} aria-hidden="true">
                 {vm.currentIcon}
               </span>
-              <span className={styles.itemLabel}>{vm.currentLabel}</span>
+              <span className={styles.itemLabel} style={{ fontSize: getLabelFontSize(vm.currentLabel) }}>
+                {vm.currentLabel}
+              </span>
               <span className={styles.buttonHint} aria-hidden="true">
                 Seleccionar ✓
               </span>

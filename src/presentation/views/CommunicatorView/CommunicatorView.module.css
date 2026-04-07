@@ -51,6 +51,8 @@
 /* ─── Select button (top, ~60% height) ─── */
 .selectButton {
   flex: 3;
+  min-height: 0;     /* override flex's default min-height:auto so content can't push layout */
+  overflow: hidden;  /* content is clipped, never grows the button */
   background-color: var(--color-select);
   color: #ffffff;
   border-bottom: 3px solid rgba(0, 0, 0, 0.12);
@@ -72,13 +74,17 @@
 
 /* ─── Utterance text (shown inside select area after a leaf is reached) ─── */
 .utteranceText {
-  font-size: 3rem;
+  /* font-size is set via inline style by getLabelFontSize() */
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
   word-break: break-word;
   max-width: 90%;
   pointer-events: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
 }
 
 /* ─── Bottom row container ─── */
@@ -110,13 +116,18 @@
 }
 
 .itemLabel {
-  font-size: var(--font-size-display);
+  /* font-size is set via inline style by getLabelFontSize() */
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
   word-break: break-word;
   max-width: 90%;
   pointer-events: none;
+  /* Safety net: clamp to 5 lines maximum */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
 }
 
 .buttonHint {
