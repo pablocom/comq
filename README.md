@@ -38,7 +38,3 @@ Presentation → Application → Domain ← Infrastructure
 ## Tech Stack
 
 React 19, TypeScript 5 (strict), Vite 8, Vitest, Playwright, CSS Modules.
-
-## License
-
-ISC
